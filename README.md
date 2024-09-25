@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 import csv
-
+# download beautifulsoup4 python library
 # List of URLs to search across
 urls = [
     "https://example.com/page1",
