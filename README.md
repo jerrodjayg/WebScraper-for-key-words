@@ -96,6 +96,12 @@ def convert_date_format(date_str):
     """Convert date from DD/MM/YYYY to YYYY-MM-DD for URL usage."""
     return datetime.strptime(date_str, "%d/%m/%Y").strftime("%Y-%m-%d")
 
+def get_airbnb_link(city):
+    """Generate a shortcut link to Airbnb listings in the specified city."""
+    # Format the city name for URL use (spaces to hyphens, lowercase, etc.)
+    city_formatted = city.replace(" ", "-").lower()
+    return f"https://www.airbnb.com/s/{city_formatted}/homes"
+
 # Prompt the user for the departure airport (abbreviation)
 from_city = input("Please enter the departure airport (e.g., JFK for New York): ").strip().upper()
 
@@ -119,3 +125,12 @@ if results:
     highlight_cheapest(results)
 else:
     print("No matches found.")
+
+# After displaying flight results, ask if the user wants an Airbnb link
+book_airbnb = input("Would you like to book an Airbnb in your destination city? (yes/no): ").strip().lower()
+
+if book_airbnb == "yes":
+    airbnb_link = get_airbnb_link(to_city)
+    print(f"\nYou can explore Airbnb options here: {airbnb_link}")
+else:
+    print("\nContinuing without Airbnb booking.")
